@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "935548104568",
+    "firebase_url": "https://gtscore-85da2.firebaseio.com",
+    "project_id": "gtscore-85da2",
+    "storage_bucket": "gtscore-85da2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:935548104568:android:ffa8175f224e4914",
+        "android_client_info": {
+          "package_name": "com.example.ngailapdi.gtscore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "935548104568-grbl435fv2bcahrvmt1164jv5a53ij91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtDNdmjT5xGnDbA2S0ozy84ICPHMij2kY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
