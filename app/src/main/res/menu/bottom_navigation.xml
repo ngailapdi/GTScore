@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Profile"/>
+    <item
+        android:id="@+id/contact"
+        android:icon="@drawable/ic_contacts_black_24dp"
+        android:title="Contacts"/>
+    <item
+        android:id="@+id/game"
+        android:icon="@drawable/ic_directions_run_black_24dp"
+        android:title="Games"/>
+    <item
+        android:id="@+id/tournament"
+        android:icon="@drawable/ic_sentiment_satisfied_black_24dp"
+        android:title="Tournament"/>
+
+
+
+
+</menu>
