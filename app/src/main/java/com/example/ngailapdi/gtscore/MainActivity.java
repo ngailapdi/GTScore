@@ -1,6 +1,5 @@
 package com.example.ngailapdi.gtscore;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFrag = new ContactFragment();
                     break;
                 case R.id.game:
-                    selectedFrag = new GamesFragment();
+                    selectedFrag = new HistoryFragment();
                     break;
                 case R.id.tournament:
                     selectedFrag = new TournamentFragment();
