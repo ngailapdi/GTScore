@@ -5,6 +5,9 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_up">Register</string>
     <string name="action_sign_in">Sign in</string>
+    <string name="name_reg">Name</string>
+    <string name="cancel">Cancel</string>
+
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
