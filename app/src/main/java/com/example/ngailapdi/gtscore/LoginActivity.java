@@ -2,6 +2,7 @@ package com.example.ngailapdi.gtscore;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView.BufferType;
 import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -61,13 +63,17 @@ public class LoginActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
                                                 // Sign-in success
+
                                                 Log.d("Sign in", "Sign in successful");
                                                 FirebaseUser user = mAuth.getCurrentUser();
                                                 Toast.makeText(LoginActivity.this, "Sign in success",
                                                         Toast.LENGTH_LONG).show();
+//                                                Toast.makeText(LoginActivity.this, user.getDisplayName(),
+//                                                        Toast.LENGTH_LONG).show();
                                                 updateUI(user);
-//                                                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-//                                                startActivity(mainActivity);
+
+                                                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                                                startActivity(mainActivity);
                                             } else {
                                                 // Sign-in fail
                                                 Toast.makeText(LoginActivity.this,
@@ -81,13 +87,18 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         Button mSignupButton = (Button) findViewById(R.id.sign_up_button);
-//        mSignupButton.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent signUpIntent = new Intent(LoginActivity.this, SignUpActivity.class);
-//                startActivityForResult(signUpIntent, 1);
-//            }
-//        });
+        mSignupButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("-----------------CLICK");
+                Intent signUpIntent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivityForResult(signUpIntent, 1);
+            }
+        });
+        // ATTENTION: This was auto-generated to handle app links.
+        Intent appLinkIntent = getIntent();
+        String appLinkAction = appLinkIntent.getAction();
+        Uri appLinkData = appLinkIntent.getData();
     }
 
     @Override
