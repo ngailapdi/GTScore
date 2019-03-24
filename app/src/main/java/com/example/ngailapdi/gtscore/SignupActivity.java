@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class SignupActivity extends AppCompatActivity {
     private EditText mEmailView;
@@ -58,15 +61,19 @@ public class SignupActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Log.d("Sign in", "Sign in success");
+                                                    Log.d("Sign up", "Sign up success");
+                                                    putUserToDatabase();
 
+
+                                                } else {
+                                                    Log.d("Sign up", "Sign up failed");
                                                 }
+
                                             }
                                         });
-
                                         updateUI(user);
                                     } else {
-                                        Log.d("Sign in", "Sign in fail");
+                                        Log.d("Sign up", "Sign up fail");
                                         Toast.makeText(SignupActivity.this, "Cannot create user account",
                                                 Toast.LENGTH_LONG).show();
                                     }
@@ -140,6 +147,15 @@ public class SignupActivity extends AppCompatActivity {
         }
         finish();
 
+    }
+
+    private void putUserToDatabase() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference();
+        databaseUser = databaseUser.child("Users/" + user.getUid());
+        User newUser = new User(user.getDisplayName(), user.getEmail(),
+                new ArrayList<User>(), new ArrayList<Match>());
+        databaseUser.setValue(newUser);
     }
 
 }

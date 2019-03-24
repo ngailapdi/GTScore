@@ -5,49 +5,104 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.zip.Inflater;
+import java.util.Map;
 
 public class ContactFragment extends Fragment {
     @Nullable
-    private ArrayList<String> array = new ArrayList<String>();
+    private ArrayList<User> contactList;
+    private static DatabaseReference database;
+
+
+    private FirebaseUser user;
+    private ListView contactListView;
+    private View displayView;
+    private ArrayAdapter<User> arrayAdapterName;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View display = inflater.inflate(R.layout.fragment_contact,container,false);
-        ListView list = (ListView) display.findViewById(R.id.list_contact);
-        createList();
-        list.setAdapter(new MyListAdapter(this.getActivity(),R.layout.list_invite,array));
-        return display;
+        displayView = inflater.inflate(R.layout.fragment_contact,container,false);
+        contactListView = (ListView) displayView.findViewById(R.id.list_contact);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance().getReference();
+        contactList = new ArrayList<User>();
+        database.child("Users/" + user.getUid() + "/friends")
+                .addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                User friend = dataSnapshot.getValue(User.class);
+
+                // Notify the ArrayAdapter that there was a change
+                arrayAdapterName.add(friend);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+//        createList();
+        arrayAdapterName = new MyListAdapter(this.getActivity(),R.layout.list_invite,contactList);
+        contactListView.setAdapter(arrayAdapterName);
+        return displayView;
 
     }
-
-    private void createList()
-    {
-        for(int i =0; i < 10; i++)
-        {
-            array.add("row"+i);
-        }
+    public static void sendInvitationToUser(String uid, final String message) {
+        DatabaseReference databaseInvitation = database.child("Users/" + uid + "/invitations");
+        Map<String, String> invitation = new HashMap<>();
+        invitation.put(uid, message);
+        databaseInvitation.push().setValue(invitation);
     }
+
+//    private void createList()
+//    {
+//
+//        for(int i =0; i < 10; i++)
+//        {
+//            array.add("row"+i);
+//        }
+//    }
 }
 
-    class MyListAdapter extends ArrayAdapter<String>
+    class MyListAdapter extends ArrayAdapter<User>
     {
         int layout;
-        protected MyListAdapter(Context context, int resources, List<String> objects)
+        protected MyListAdapter(Context context, int resources, List objects)
         {
             super(context, resources, objects);
             layout = resources;
@@ -67,16 +122,14 @@ public class ContactFragment extends Fragment {
                 viewHolder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getContext(),"Is clicked" +position, Toast.LENGTH_SHORT ).show();
+
                     }
                 });
                 convertView.setTag(viewHolder);
             }
-            else{
-                main = (ViewHolder) convertView.getTag();
-                main.txt.setText(getItem(position));
+            main = (ViewHolder) convertView.getTag();
+            main.txt.setText(getItem(position).getName());
 
-            }
             return convertView;
 
 
@@ -88,5 +141,7 @@ public class ContactFragment extends Fragment {
         Button button;
 
     }
+
+
 
 }
