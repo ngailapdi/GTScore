@@ -7,19 +7,19 @@ public class User {
     private String email;
     private String uid;
     private List<User> friends;
-    private List<Match> matches;
+    private List<Game> games;
 
     public User() {
 
     }
 
     public User(String name, String email,
-                List<User> friends, List<Match> matches) {
+                List<User> friends, List<Game> games) {
         this.name = name;
         this.email = email;
         this.uid = uid;
         this.friends = friends;
-        this.matches = matches;
+        this.games = games;
     }
 
     public String getName() {
@@ -34,7 +34,7 @@ public class User {
     public List<User> getFriends() {
         return this.friends;
     }
-    public List<Match> getMatches() {
-        return this.matches;
+    public List<Game> getGames() {
+        return this.games;
     }
 }

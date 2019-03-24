@@ -154,7 +154,7 @@ public class SignupActivity extends AppCompatActivity {
         DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference();
         databaseUser = databaseUser.child("Users/" + user.getUid());
         User newUser = new User(user.getDisplayName(), user.getEmail(),
-                new ArrayList<User>(), new ArrayList<Match>());
+                new ArrayList<User>(), new ArrayList<Game>());
         databaseUser.setValue(newUser);
     }
 
