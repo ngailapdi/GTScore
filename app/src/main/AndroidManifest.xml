@@ -36,11 +36,16 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_profile"></activity>
-        <activity android:name=".SignupActivity"></activity>
-        <activity android:name=".AddGameActivity"></activity>
-        <activity android:name=".GameActivity"></activity>
-        <activity android:name=".AddMatchActivity"></activity>
-        <activity android:name=".MatchActivity"></activity>
+        <activity android:name=".SignupActivity"
+            android:label="@string/title_activity_signup"></activity>
+        <activity android:name=".AddGameActivity"
+            android:label="@string/title_activity_add_game"></activity>
+        <activity android:name=".GameActivity"
+            android:label="@string/title_activity_game"></activity>
+        <activity android:name=".AddMatchActivity"
+            android:label="@string/title_activity_add_match"></activity>
+        <activity android:name=".MatchActivity"
+            android:label="@string/title_activity_match"></activity>
 
 
     </application>

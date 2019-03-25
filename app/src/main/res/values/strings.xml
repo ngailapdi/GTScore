@@ -26,5 +26,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_signup">Sign Up</string>
+    <string name="title_activity_add_game">Add Game</string>
+    <string name="title_activity_game">Game</string>
+    <string name="title_activity_add_match">Add Match</string>
+    <string name="title_activity_match">Match</string>
+    <string name="title_activity_contact">Contact</string>
+    <string name="title_activity_history">History</string>
+    <string name="title_activity_tournament">Tournament</string>
 
 </resources>
