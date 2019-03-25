@@ -86,13 +86,9 @@
         android:background="@drawable/ic_add_box_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintHorizontal_bias="0.135"
-        app:layout_constraintStart_toEndOf="@+id/score1"
-=======
         app:layout_constraintHorizontal_bias="0.873"
         app:layout_constraintStart_toStartOf="parent"
->>>>>>> fc2be6d62229f193a38a9a2e9a1373f7a53260e4
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.159" />
 
@@ -109,12 +105,9 @@
         android:background="@drawable/ic_indeterminate_check_box_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintStart_toEndOf="@+id/add1"
-=======
         app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
->>>>>>> fc2be6d62229f193a38a9a2e9a1373f7a53260e4
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.157" />
 
@@ -131,12 +124,8 @@
         android:background="@drawable/ic_indeterminate_check_box_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintStart_toEndOf="@+id/minus2"
-=======
         app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toStartOf="parent"
->>>>>>> fc2be6d62229f193a38a9a2e9a1373f7a53260e4
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.591" />
 
@@ -144,22 +133,11 @@
         android:id="@+id/minus2"
         android:layout_width="46dp"
         android:layout_height="44dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/ic_add_box_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-<<<<<<< HEAD
-        app:layout_constraintHorizontal_bias="0.118"
-        app:layout_constraintStart_toEndOf="@+id/score2"
-=======
-        app:layout_constraintHorizontal_bias="0.893"
-        app:layout_constraintStart_toStartOf="parent"
->>>>>>> fc2be6d62229f193a38a9a2e9a1373f7a53260e4
+        app:layout_constraintStart_toStartOf="@+id/add1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.591" />
 </android.support.constraint.ConstraintLayout>
