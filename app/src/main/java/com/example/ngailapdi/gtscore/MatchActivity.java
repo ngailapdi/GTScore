@@ -30,9 +30,8 @@ public class MatchActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-
-        score1.setText(scorep1);
-        score2.setText(scorep2);
+        score1.setText(String.valueOf(scorep1));
+        score2.setText(String.valueOf(scorep2));
 
     }
 
@@ -59,14 +58,14 @@ public class MatchActivity extends AppCompatActivity {
         addOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scorep1 = scorep1 + 1;
+                scorep1++;
             }
         });
         addTwo = (Button) findViewById(R.id.add2);
         addTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scorep2 = scorep2 + 1;
+                scorep2++;
             }
         });
 
