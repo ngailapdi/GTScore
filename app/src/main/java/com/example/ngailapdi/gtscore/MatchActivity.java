@@ -58,44 +58,6 @@ public class MatchActivity extends AppCompatActivity {
         score1 = (EditText) findViewById(R.id.score1);
         score2 = (EditText) findViewById(R.id.score2);
         addOne = (Button) findViewById(R.id.add1);
-        addOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scorep1++;
-            }
-        });
-        addTwo = (Button) findViewById(R.id.add2);
-        addTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scorep2++;
-            }
-        });
-
-        minusOne = (Button) findViewById(R.id.minus1);
-        minusOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (scorep1 > 0) {
-                    scorep1 = scorep1 - 1;
-                }
-            }
-        });
-        minusTwo = (Button) findViewById(R.id.minus2);
-        minusTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(scorep2 > 0) {
-                    scorep2 = scorep2 - 1;
-                }
-            }
-        });
-
-
-
-
-        player1.setText(player1Name);
-        player2.setText(player2Name);
         DatabaseReference databaseU1 = database.child("Users/" + p1ID + "/matches/" + matchID);
         databaseU1.child("/score1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -103,6 +65,7 @@ public class MatchActivity extends AppCompatActivity {
                 long s1 = (long) dataSnapshot.getValue();
 
                 score1.setText(s1 + "");
+                scorep1 = (int) s1;
 
             }
 
@@ -117,6 +80,7 @@ public class MatchActivity extends AppCompatActivity {
                 long s2 = (long) dataSnapshot.getValue();
 
                 score2.setText(s2 + "");
+                scorep2 = (int) s2;
 
             }
 
@@ -125,6 +89,50 @@ public class MatchActivity extends AppCompatActivity {
 
             }
         });
+        addOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scorep1++;
+                score1.setText(scorep1 + "");
+            }
+        });
+        addTwo = (Button) findViewById(R.id.add2);
+        addTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scorep2++;
+                score2.setText(scorep2 + "");
+            }
+        });
+
+        minusOne = (Button) findViewById(R.id.minus1);
+        minusOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (scorep1 > 0) {
+                    scorep1 = scorep1 - 1;
+                    score1.setText(scorep1 + "");
+                }
+            }
+        });
+        minusTwo = (Button) findViewById(R.id.minus2);
+        minusTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(scorep2 > 0) {
+                    scorep2 = scorep2 - 1;
+                    score2.setText(scorep2 + "");
+                }
+            }
+        });
+
+
+
+
+        player1.setText(player1Name);
+        player2.setText(player2Name);
+
+
         saveScoreButton = (Button) findViewById(R.id.saveScore);
         saveScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
