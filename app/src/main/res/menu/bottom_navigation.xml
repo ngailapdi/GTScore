@@ -18,7 +18,4 @@
         android:icon="@drawable/ic_sentiment_satisfied_black_24dp"
         android:title="Tournament"/>
 
-
-
-
 </menu>

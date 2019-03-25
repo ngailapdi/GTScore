@@ -5,8 +5,10 @@
     android:background="@color/colorDe" >
 
     <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="346dp"
+        android:layout_height="682dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp" />
 </RelativeLayout>
