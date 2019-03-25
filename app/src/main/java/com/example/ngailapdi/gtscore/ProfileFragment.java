@@ -44,7 +44,7 @@ public class ProfileFragment extends Fragment {
         userDisplayNameView = (TextView) inflatedView.findViewById(R.id.textView2);
         userDisplayNameView.setText(user.getDisplayName());
         gameList = new ArrayList<>();
-        addGameButton = (Button) inflatedView.findViewById(R.id.button);
+        addGameButton = (Button) inflatedView.findViewById(R.id.buttonadd);
         addGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

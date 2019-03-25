@@ -9,56 +9,49 @@
     tools:context=".MainActivity">
 
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="0dp"
-        android:fillViewport="true">
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="12dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <fragment
+            android:id="@+id/profile_frag"
+            android:name="com.example.ngailapdi.gtscore.ProfileFragment"
+            android:layout_width="352dp"
+            android:layout_height="577dp"
+            android:layout_gravity="top"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp" />
 
-            <android.support.design.widget.BottomNavigationView
-                android:id="@+id/navi_bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="532dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:layout_marginBottom="119dp"
-                app:menu="@menu/bottom_navigation">
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navi_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            app:menu="@menu/bottom_navigation">
 
-            </android.support.design.widget.BottomNavigationView>
+        </android.support.design.widget.BottomNavigationView>
 
-            <FrameLayout
-                android:id="@+id/profile_frag"
-                android:layout_width="wrap_content"
-                android:layout_height="441dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="18dp"
-                android:layout_marginLeft="18dp"
-                android:layout_marginTop="59dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="231dp">
-
-            </FrameLayout>
-        </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </FrameLayout>
 
 </RelativeLayout>

@@ -20,6 +20,13 @@ public class MatchActivity extends AppCompatActivity {
     private DatabaseReference database;
     private String player1Name;
     private String player2Name;
+    private Button addOne;
+    private Button addTwo;
+    private Button minusOne;
+    private Button minusTwo;
+    private int scorep1 = 0;
+    private int scorep2 = 0;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +47,39 @@ public class MatchActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
         score1 = (EditText) findViewById(R.id.score1);
         score2 = (EditText) findViewById(R.id.score2);
+        addOne = (Button) findViewById(R.id.add1);
+        addOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scorep1 += 1;
+                score1.setText(scorep1);
+            }
+        });
+        addTwo = (Button) findViewById(R.id.add2);
+        addTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scorep2 += 1;
+                score2.setText(scorep2);
+            }
+        });
 
+        minusOne = (Button) findViewById(R.id.minus1);
+        minusOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scorep1 -= 1;
+                score1.setText(scorep1);
+            }
+        });
+        minusTwo = (Button) findViewById(R.id.minus2);
+        minusTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scorep2 -= 1;
+                score2.setText(scorep2);
+            }
+        });
 
 
         player1.setText(player1Name);
