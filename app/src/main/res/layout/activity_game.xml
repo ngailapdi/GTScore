@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/nameGameText"
-        android:layout_width="373dp"
-        android:layout_height="22dp"
+        android:layout_width="303dp"
+        android:layout_height="49dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -20,20 +20,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/match_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.029" />
 
     <ListView
         android:id="@+id/match_view"
-        android:layout_width="395dp"
-        android:layout_height="679dp"
+        android:layout_width="345dp"
+        android:layout_height="518dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/colorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/nameGameText"
         app:layout_constraintVertical_bias="0.029" />
 
@@ -41,14 +39,18 @@
         android:id="@+id/addMatchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimaryDark"
         android:text="ADD"
-        app:layout_constraintBottom_toBottomOf="@+id/nameGameText"
-        app:layout_constraintBottom_toTopOf="@+id/match_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toRightOf="@id/nameGameText"
+        app:layout_constraintHorizontal_bias="0.918"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nameGameText"
-        app:layout_constraintVertical_bias="0.615" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.143" />
 </android.support.constraint.ConstraintLayout>

@@ -27,6 +27,14 @@ public class MatchActivity extends AppCompatActivity {
     private int scorep1 = 0;
     private int scorep2 = 0;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        score1.setText(scorep1);
+        score2.setText(scorep2);
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,16 +59,14 @@ public class MatchActivity extends AppCompatActivity {
         addOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scorep1 += 1;
-                score1.setText(scorep1);
+                scorep1 = scorep1 + 1;
             }
         });
         addTwo = (Button) findViewById(R.id.add2);
         addTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scorep2 += 1;
-                score2.setText(scorep2);
+                scorep2 = scorep2 + 1;
             }
         });
 
@@ -68,18 +74,22 @@ public class MatchActivity extends AppCompatActivity {
         minusOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scorep1 -= 1;
-                score1.setText(scorep1);
+                if (scorep1 > 0) {
+                    scorep1 = scorep1 - 1;
+                }
             }
         });
         minusTwo = (Button) findViewById(R.id.minus2);
         minusTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                scorep2 -= 1;
-                score2.setText(scorep2);
+                if(scorep2 > 0) {
+                    scorep2 = scorep2 - 1;
+                }
             }
         });
+
+
 
 
         player1.setText(player1Name);
@@ -92,8 +102,6 @@ public class MatchActivity extends AppCompatActivity {
                 DatabaseReference databaseU12 = database.child("Users/" + p1ID + "/matches/" + matchID + "/score2/");
                 DatabaseReference databaseU21 = database.child("Users/" + p2ID + "/matches/" + matchID + "/score1/");
                 DatabaseReference databaseU22 = database.child("Users/" + p2ID + "/matches/" + matchID + "/score2/");
-
-
 
                 databaseU11.setValue(Integer.parseInt(score1.getText().toString()));
                 databaseU21.setValue(Integer.parseInt(score1.getText().toString()));
