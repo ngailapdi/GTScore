@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MatchActivity extends AppCompatActivity {
     private TextView player1;
@@ -93,6 +96,35 @@ public class MatchActivity extends AppCompatActivity {
 
         player1.setText(player1Name);
         player2.setText(player2Name);
+        DatabaseReference databaseU1 = database.child("Users/" + p1ID + "/matches/" + matchID);
+        databaseU1.child("/score1").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long s1 = (long) dataSnapshot.getValue();
+
+                score1.setText(s1 + "");
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+
+            }
+        });
+        databaseU1.child("/score2").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                long s2 = (long) dataSnapshot.getValue();
+
+                score2.setText(s2 + "");
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError firebaseError) {
+
+            }
+        });
         saveScoreButton = (Button) findViewById(R.id.saveScore);
         saveScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
