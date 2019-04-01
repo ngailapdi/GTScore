@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:label="@string/title_activity_history"
-    android:background="@color/colorDe" >
+    android:background="@color/colorBack" >
 
     <ListView
         android:layout_width="346dp"

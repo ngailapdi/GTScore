@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDe"
+    android:background="@color/colorBack"
     tools:context=".MainActivity">
 
 
@@ -25,18 +25,23 @@
         android:layout_marginRight="23dp"
         android:layout_marginBottom="12dp">
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="361dp"
-            android:layout_height="635dp"
-            android:layout_gravity="top"
-            android:fillViewport="true">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top">
 
             <LinearLayout
-                android:id="@+id/profile_frag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </android.support.v4.widget.NestedScrollView>
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/profile_frag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+            </LinearLayout>
+        </ScrollView>
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navi_bottom"
