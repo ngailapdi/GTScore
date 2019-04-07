@@ -44,7 +44,7 @@ public class ProfileFragment extends Fragment {
         userDisplayNameView = (TextView) inflatedView.findViewById(R.id.textView2);
         userDisplayNameView.setText(user.getDisplayName());
         gameList = new ArrayList<>();
-        addGameButton = (Button) inflatedView.findViewById(R.id.buttonadd);
+       // addGameButton = (Button) inflatedView.findViewById(R.id.buttonadd);
         addGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        gameListView = (ListView) inflatedView.findViewById(R.id.listview);
+       //gameListView = (ListView) inflatedView.findViewById(R.id.listview);
         user = FirebaseAuth.getInstance().getCurrentUser();
         databaseUser = FirebaseDatabase.getInstance().getReference();
         games = new ArrayList<String>();
