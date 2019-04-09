@@ -18,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             android.support.v4.app.Fragment selectedFrag = null;
             switch (item.getItemId()) {
-                case R.id.profile:
-                    selectedFrag = new ProfileFragment();
+                case R.id.match:
+                    selectedFrag = new TournamentFragment();
                     break;
                 case R.id.contact:
                     selectedFrag = new ContactFragment();
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.game:
                     selectedFrag = new HistoryFragment();
                     break;
-                case R.id.tournament:
-                    selectedFrag = new TournamentFragment();
+                case R.id.entry:
+                    selectedFrag = new ProfileFragment();
                     break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,selectedFrag).commit();
