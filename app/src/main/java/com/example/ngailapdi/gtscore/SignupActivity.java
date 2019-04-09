@@ -155,6 +155,7 @@ public class SignupActivity extends AppCompatActivity {
         databaseUser = databaseUser.child("Users/" + user.getUid());
         User newUser = new User(user.getDisplayName(), user.getEmail(),
                 new ArrayList<User>(), new ArrayList<Game>());
+        newUser.setUid(user.getUid());
         databaseUser.setValue(newUser);
     }
 

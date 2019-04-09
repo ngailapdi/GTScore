@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -90,43 +89,43 @@ public class AddMatchActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (attemptSave()) {
-                    System.out.println("_------------gameID: " + gameID);
-                    for (User friend : friends) {
-                        if (opEmail.getText().toString().equals(friend.getEmail())) {
-                            opponent = friend;
-                        }
-                    }
-                    if (opponent == null) {
-                        System.out.println("NOT FOUND");
-                        Log.d("error not found", "This person is not in your contact list");
-                    }
+//                if (attemptSave()) {
+//                    System.out.println("_------------gameID: " + gameID);
+//                    for (User friend : friends) {
+//                        if (opEmail.getText().toString().equals(friend.getEmail())) {
+//                            opponent = friend;
+//                        }
+//                    }
+//                    if (opponent == null) {
+//                        System.out.println("NOT FOUND");
+//                        Log.d("error not found", "This person is not in your contact list");
+//                    }
+////
+//                    DatabaseReference databaseMatch = database.child("Users/" + user.getUid() + "/matches");
+//                    DatabaseReference newMatch = databaseMatch.push();
+//                    String matchID = newMatch.getKey();
+//                    Match match = new Match(inputName.getText().toString(),
+//                            user.getUid(), opponent.getUid(), user.getDisplayName(), opponent.getName(), gameID);
+//                    match.setMatchID(matchID);
 //
-                    DatabaseReference databaseMatch = database.child("Users/" + user.getUid() + "/matches");
-                    DatabaseReference newMatch = databaseMatch.push();
-                    String matchID = newMatch.getKey();
-                    Match match = new Match(inputName.getText().toString(),
-                            user.getUid(), opponent.getUid(), user.getDisplayName(), opponent.getName(), gameID);
-                    match.setMatchID(matchID);
-
-                    newMatch.setValue(match);
-
-                    Game g2 = new Game(gameName, gameDescription);
-                    g2.setGameID(gameID);
-                    database.child("Users/" + opponent.getUid() + "/games/" + gameID).setValue(g2);
-
-                    databaseMatch = database.child("Users/" + opponent.getUid() + "/matches/" + matchID);
-                    Match matchOp = new Match(inputName.getText().toString(), opponent.getUid(),
-                            user.getUid(), opponent.getName(), user.getDisplayName(), gameID);
-                    matchOp.setMatchID(matchID);
-
-                    databaseMatch.setValue(matchOp);
-
-
-                    Log.d("Add match", "Add match success");
-                    updateUI(user);
-
-                }
+//                    newMatch.setValue(match);
+//
+//                    Game g2 = new Game(gameName, gameDescription);
+//                    g2.setGameID(gameID);
+//                    database.child("Users/" + opponent.getUid() + "/games/" + gameID).setValue(g2);
+//
+//                    databaseMatch = database.child("Users/" + opponent.getUid() + "/matches/" + matchID);
+//                    Match matchOp = new Match(inputName.getText().toString(), opponent.getUid(),
+//                            user.getUid(), opponent.getName(), user.getDisplayName(), gameID);
+//                    matchOp.setMatchID(matchID);
+//
+//                    databaseMatch.setValue(matchOp);
+//
+//
+//                    Log.d("Add match", "Add match success");
+//                    updateUI(user);
+//
+//                }
             }
         });
     }

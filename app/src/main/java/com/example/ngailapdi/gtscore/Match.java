@@ -10,13 +10,12 @@ public class Match {
     private String matchID;
     private String player1Name;
     private String player2Name;
-    private String gameID;
 
     public Match() {
 
     }
 
-    public Match(String name, String user1ID, String user2ID, String user1Name, String user2Name, String gameID) {
+    public Match(String name, String user1ID, String user2ID, String user1Name, String user2Name) {
         this.name = name;
         this.player1ID = user1ID;
         this.player2ID = user2ID;
@@ -25,7 +24,6 @@ public class Match {
         this.score1 = 0;
         this.score2 = 0;
         this.played = false;
-        this.gameID = gameID;
     }
     public String getName() {
         return this.name;
@@ -60,5 +58,4 @@ public class Match {
     public String getMatchID() {return this.matchID;}
     public String getPlayer1Name() {return this.player1Name;}
     public String getPlayer2Name() {return this.player2Name;}
-    public String getGameID() {return this.gameID;}
 }

@@ -25,12 +25,13 @@ public class User {
     public String getName() {
         return this.name;
     }
-    public  String getEmail() {
+    public String getEmail() {
         return this.email;
     }
     public String getUid() {
         return this.uid;
     }
+    public void setUid(String uid) {this.uid = uid;}
     public List<User> getFriends() {
         return this.friends;
     }
