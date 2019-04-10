@@ -47,7 +47,6 @@ public class MatchActivity extends AppCompatActivity {
         final String p2ID = intent.getStringExtra("p2ID");
         String s1 = intent.getStringExtra("s1");
         String s2 = intent.getStringExtra("s2");
-        final String gameID = intent.getStringExtra("gameID");
         final String matchID = intent.getStringExtra("matchID");
         String player1Name = intent.getStringExtra("p1Name");
         String player2Name = intent.getStringExtra("p2Name");
@@ -58,7 +57,7 @@ public class MatchActivity extends AppCompatActivity {
         score1 = (EditText) findViewById(R.id.score1);
         score2 = (EditText) findViewById(R.id.score2);
         addOne = (Button) findViewById(R.id.add1);
-        DatabaseReference databaseU1 = database.child("Users/" + p1ID + "/matches/" + matchID);
+        DatabaseReference databaseU1 = database.child("Users/" + p1ID + "/games/" + matchID);
         databaseU1.child("/score1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -137,10 +136,10 @@ public class MatchActivity extends AppCompatActivity {
         saveScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference databaseU11 = database.child("Users/" + p1ID + "/matches/" + matchID + "/score1/");
-                DatabaseReference databaseU12 = database.child("Users/" + p1ID + "/matches/" + matchID + "/score2/");
-                DatabaseReference databaseU21 = database.child("Users/" + p2ID + "/matches/" + matchID + "/score1/");
-                DatabaseReference databaseU22 = database.child("Users/" + p2ID + "/matches/" + matchID + "/score2/");
+                DatabaseReference databaseU11 = database.child("Users/" + p1ID + "/games/" + matchID + "/score1/");
+                DatabaseReference databaseU12 = database.child("Users/" + p1ID + "/games/" + matchID + "/score2/");
+                DatabaseReference databaseU21 = database.child("Users/" + p2ID + "/games/" + matchID + "/score1/");
+                DatabaseReference databaseU22 = database.child("Users/" + p2ID + "/games/" + matchID + "/score2/");
 
                 databaseU11.setValue(Integer.parseInt(score1.getText().toString()));
                 databaseU21.setValue(Integer.parseInt(score1.getText().toString()));

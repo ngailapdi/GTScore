@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navi_bottom);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,new ProfileFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,new TournamentFragment()).commit();
     }
 
 }

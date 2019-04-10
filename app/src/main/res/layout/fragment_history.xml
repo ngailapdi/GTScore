@@ -6,10 +6,21 @@
     android:background="@color/colorBack" >
 
     <ListView
-        android:layout_width="346dp"
-        android:layout_height="682dp"
+        android:id="@+id/his_list"
+        android:layout_width="wrap_content"
+        android:layout_height="590dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="28dp" />
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="285dp"
+        android:layout_height="90dp"
+        android:text="TextView" />
 </RelativeLayout>

@@ -32,7 +32,6 @@ public class TournamentFragment extends Fragment {
     private EditText inputNameGame;
     private Button createMatch;
     private Spinner opponentSpinner;
-
     private List<User> friends;
     private List<String> friendsName;
     private User opponent;
@@ -129,10 +128,13 @@ public class TournamentFragment extends Fragment {
 
 
                 Log.d("Add match", "Add match success");
+
                 updateUI();
+
 
             }
         });
+
 
         return inflatedView;
         

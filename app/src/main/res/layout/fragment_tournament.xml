@@ -44,7 +44,7 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Game Name:"
+        android:text="Game:"
         android:textSize="35dp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
@@ -83,12 +83,12 @@
             android:id="@+id/game_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="enter the game name" />
     </android.support.design.widget.TextInputLayout>
 
     <Spinner
         android:id="@+id/opponent_list"
-        android:layout_width="372dp"
+        android:layout_width="307dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
