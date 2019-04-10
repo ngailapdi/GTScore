@@ -21,14 +21,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 public class ContactFragment extends Fragment {
     @Nullable
@@ -41,6 +36,14 @@ public class ContactFragment extends Fragment {
     private View displayView;
     private ArrayAdapter<User> arrayAdapterName;
     private Button addUser;
+
+    public void updateUI(String senderID, String receiverID) {
+        Intent createMessage = new Intent(getActivity(), CreateMessage.class);
+        createMessage.putExtra("senderID", senderID);
+        createMessage.putExtra("receiverID", receiverID);
+        startActivityForResult(createMessage, 1);
+
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -91,16 +94,10 @@ public class ContactFragment extends Fragment {
             }
         });
 //        createList();
-        arrayAdapterName = new MyListAdapter(this.getActivity(),R.layout.list_invite,contactList);
+        arrayAdapterName = new MyListAdapter(this.getActivity(),R.layout.list_invite,contactList, this);
         contactListView.setAdapter(arrayAdapterName);
         return displayView;
 
-    }
-    public static void sendInvitationToUser(String uid, final String message) {
-        DatabaseReference databaseInvitation = database.child("Users/" + uid + "/invitations");
-        Map<String, String> invitation = new HashMap<>();
-        invitation.put(uid, message);
-        databaseInvitation.push().setValue(invitation);
     }
 
 //    private void createList()
@@ -116,9 +113,11 @@ public class ContactFragment extends Fragment {
     class MyListAdapter extends ArrayAdapter<User>
     {
         int layout;
-        protected MyListAdapter(Context context, int resources, List objects)
+        ContactFragment contactFragment;
+        protected MyListAdapter(Context context, int resources, List objects, ContactFragment contactFragment)
         {
             super(context, resources, objects);
+            this.contactFragment = contactFragment;
             layout = resources;
         }
 
@@ -136,29 +135,14 @@ public class ContactFragment extends Fragment {
                 viewHolder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        User friend = getItem(position);
-                        String friendDeviceToken = friend.getDeviceToken();
-                        FirebaseMessaging fm = FirebaseMessaging.getInstance();
-                        System.out.println("----------!!!!" + friend.getName());
-
-                        fm.send(new RemoteMessage.Builder(friendDeviceToken + "@gcm.googleapis.com")
-                                .setMessageId(Integer.toString(new Random().nextInt(60000)))
-                                .addData("my_message", "Hello World")
-                                .addData("my_action","SAY_HELLO")
-                                .build());
-//                        System.out.println("----------!!!!" + friend.getName());
-//                        RemoteMessage message = new RemoteMessage.Builder(friendDeviceToken)
-//                                .addData("invitation", "Invitation")
-//                                .build();
-//
-//                        FirebaseMessaging.getInstance().send(message);
-
-
-
+                        contactFragment.updateUI(
+                                FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), getItem(position).getUid());
 
                     }
+
                 });
                 convertView.setTag(viewHolder);
+                viewHolder.button.setText("Invited");
             }
             main = (ViewHolder) convertView.getTag();
             main.txt.setText(getItem(position).getName());
