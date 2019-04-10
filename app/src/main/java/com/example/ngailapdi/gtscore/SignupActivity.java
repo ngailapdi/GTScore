@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +22,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class SignupActivity extends AppCompatActivity {
     private Button signUpButton;
     private FirebaseAuth mAuth;
     private DatabaseReference databaseUser;
+//    private String deviceToken;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -150,13 +154,23 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private void putUserToDatabase() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference();
-        databaseUser = databaseUser.child("Users/" + user.getUid());
-        User newUser = new User(user.getDisplayName(), user.getEmail(),
-                new ArrayList<User>(), new ArrayList<Game>());
-        newUser.setUid(user.getUid());
-        databaseUser.setValue(newUser);
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(
+                SignupActivity.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                String deviceToken = instanceIdResult.getToken();
+                DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference();
+                databaseUser = databaseUser.child("Users/" + user.getUid());
+                User newUser = new User(user.getDisplayName(), user.getEmail(),
+                        new ArrayList<User>(), new ArrayList<Game>());
+                newUser.setUid(user.getUid());
+                newUser.setDeviceToken(deviceToken);
+                databaseUser.setValue(newUser);
+            }
+        });
+
     }
 
 }

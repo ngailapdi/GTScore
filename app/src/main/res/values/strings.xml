@@ -34,5 +34,7 @@
     <string name="title_activity_contact">Contact</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_tournament">Tournament</string>
+    <string name="notifications_admin_channel_name">GTScore</string>
+    <string name="notifications_admin_channel_description">CS4261</string>
 
 </resources>

@@ -15,10 +15,15 @@ import android.widget.TextView.BufferType;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 /**
  * A login screen that offers login via email/password.
@@ -64,12 +69,23 @@ public class LoginActivity extends AppCompatActivity {
                                                 // Sign-in success
 
                                                 Log.d("Sign in", "Sign in successful");
-                                                FirebaseUser user = mAuth.getCurrentUser();
+                                                final FirebaseUser user = mAuth.getCurrentUser();
                                                 Toast.makeText(LoginActivity.this, "Sign in success",
                                                         Toast.LENGTH_LONG).show();
 //                                                Toast.makeText(LoginActivity.this, user.getDisplayName(),
 //                                                        Toast.LENGTH_LONG).show();
                                                 updateUI(user);
+                                                FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(
+                                                        LoginActivity.this, new OnSuccessListener<InstanceIdResult>() {
+                                                            @Override
+                                                            public void onSuccess(InstanceIdResult instanceIdResult) {
+                                                                String deviceToken = instanceIdResult.getToken();
+                                                                DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference();
+                                                                databaseUser = databaseUser.child("Users/" + user.getUid() + "/deviceToken/");
+
+                                                                databaseUser.setValue(deviceToken);
+                                                            }
+                                                        });
 
                                                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                                                 startActivity(mainActivity);

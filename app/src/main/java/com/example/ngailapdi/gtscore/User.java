@@ -6,6 +6,7 @@ public class User {
     private String name;
     private String email;
     private String uid;
+    private String deviceToken;
     private List<User> friends;
     private List<Game> games;
 
@@ -38,4 +39,6 @@ public class User {
     public List<Game> getGames() {
         return this.games;
     }
+    public String getDeviceToken() {return this.deviceToken;}
+    public void setDeviceToken(String deviceToken) {this.deviceToken = deviceToken;}
 }
