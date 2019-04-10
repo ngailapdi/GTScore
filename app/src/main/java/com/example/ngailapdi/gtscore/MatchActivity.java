@@ -29,6 +29,7 @@ public class MatchActivity extends AppCompatActivity {
     private Button minusTwo;
     private int scorep1 = 0;
     private int scorep2 = 0;
+    private boolean played = true;
 
     @Override
     public void onResume() {
@@ -57,7 +58,7 @@ public class MatchActivity extends AppCompatActivity {
         score1 = (EditText) findViewById(R.id.score1);
         score2 = (EditText) findViewById(R.id.score2);
         addOne = (Button) findViewById(R.id.add1);
-        DatabaseReference databaseU1 = database.child("Users/" + p1ID + "/games/" + matchID);
+        final DatabaseReference databaseU1 = database.child("Users/" + p1ID + "/games/" + matchID);
         databaseU1.child("/score1").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -140,12 +141,15 @@ public class MatchActivity extends AppCompatActivity {
                 DatabaseReference databaseU12 = database.child("Users/" + p1ID + "/games/" + matchID + "/score2/");
                 DatabaseReference databaseU21 = database.child("Users/" + p2ID + "/games/" + matchID + "/score1/");
                 DatabaseReference databaseU22 = database.child("Users/" + p2ID + "/games/" + matchID + "/score2/");
+                DatabaseReference databaseU13 = database.child("Users/" + p1ID + "/games/" + matchID + "/played/");
+                DatabaseReference databaseU23 = database.child("Users/" + p2ID + "/games/" + matchID + "/played/");
 
                 databaseU11.setValue(Integer.parseInt(score1.getText().toString()));
                 databaseU21.setValue(Integer.parseInt(score1.getText().toString()));
-
                 databaseU12.setValue(Integer.parseInt(score2.getText().toString()));
                 databaseU22.setValue(Integer.parseInt(score2.getText().toString()));
+                databaseU13.setValue(true);
+                databaseU23.setValue(true);
 
 
             }

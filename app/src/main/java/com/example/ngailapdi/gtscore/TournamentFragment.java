@@ -36,6 +36,8 @@ public class TournamentFragment extends Fragment {
     private List<String> friendsName;
     private User opponent;
     private ArrayAdapter<String> friendsNameAdapter;
+    private Match matchOp;
+    private  Match match;
 
 
 
@@ -113,14 +115,14 @@ public class TournamentFragment extends Fragment {
                 DatabaseReference databaseMatch = databaseUser.child("Users/" + user.getUid() + "/games");
                 DatabaseReference newMatch = databaseMatch.push();
                 String matchID = newMatch.getKey();
-                Match match = new Match(inputNameGame.getText().toString(),
+                match = new Match(inputNameGame.getText().toString(),
                         user.getUid(), opponent.getUid(), user.getDisplayName(), opponent.getName());
                 match.setMatchID(matchID);
                 newMatch.setValue(match);
                 System.out.println("---------"+opponent.getUid());
 
                 databaseMatch = databaseUser.child("Users/" + opponent.getUid() + "/games/" + matchID);
-                Match matchOp = new Match(inputNameGame.getText().toString(), opponent.getUid(),
+                matchOp = new Match(inputNameGame.getText().toString(), opponent.getUid(),
                         user.getUid(), opponent.getName(), user.getDisplayName());
                 matchOp.setMatchID(matchID);
 
@@ -141,8 +143,15 @@ public class TournamentFragment extends Fragment {
 
     }
     private void updateUI() {
-        Intent mainActivity = new Intent(getActivity().getApplicationContext(), MainActivity.class);
-        startActivity(mainActivity);
+        Intent matchActivity = new Intent(getActivity(), MatchActivity.class);
+        matchActivity.putExtra("p1ID", match.getPlayer1ID());
+        matchActivity.putExtra("p2ID", match.getPlayer2ID());
+        matchActivity.putExtra("s1", match.getScore1());
+        matchActivity.putExtra("s2", match.getScore2());
+        matchActivity.putExtra("matchID", match.getMatchID());
+        matchActivity.putExtra("p1Name", match.getPlayer1Name());
+        matchActivity.putExtra("p2Name", match.getPlayer2Name());
+        startActivity(matchActivity);
 
     }
 }

@@ -27,9 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.game:
                     selectedFrag = new HistoryFragment();
                     break;
-                case R.id.entry:
-                    selectedFrag = new ProfileFragment();
-                    break;
+
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,selectedFrag).commit();
             return true;

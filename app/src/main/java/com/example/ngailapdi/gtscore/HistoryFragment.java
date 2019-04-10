@@ -88,7 +88,7 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 System.out.println("---------------Length: " + matchList.size());
-                    Intent matchActivity = new Intent(getActivity(), MatchActivity.class);
+                Intent matchActivity = new Intent(getActivity(), MatchActivity.class);
                 matchActivity.putExtra("p1ID", matchList.get(i).getPlayer1ID());
                 matchActivity.putExtra("p2ID", matchList.get(i).getPlayer2ID());
                 matchActivity.putExtra("s1", matchList.get(i).getScore1());

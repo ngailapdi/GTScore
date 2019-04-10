@@ -8,10 +8,6 @@
         android:icon="@drawable/ic_sentiment_satisfied_black_24dp"
         android:title="Create"/>
 
-    <item
-        android:id="@+id/entry"
-        android:icon="@drawable/ic_games_black_24dp"
-        android:title="Score"/>
 
     <item
         android:id="@+id/game"
