@@ -79,11 +79,11 @@ public class LoginActivity extends AppCompatActivity {
                                                         LoginActivity.this, new OnSuccessListener<InstanceIdResult>() {
                                                             @Override
                                                             public void onSuccess(InstanceIdResult instanceIdResult) {
-                                                                String deviceToken = instanceIdResult.getToken();
+                                                                final String deviceToken = instanceIdResult.getToken();
                                                                 DatabaseReference databaseUser = FirebaseDatabase.getInstance().getReference();
-                                                                databaseUser = databaseUser.child("Users/" + user.getUid() + "/deviceToken/");
+                                                                databaseUser = databaseUser.child("Users/" + user.getUid());
 
-                                                                databaseUser.setValue(deviceToken);
+                                                                databaseUser.child("deviceToken").setValue(deviceToken);
                                                             }
                                                         });
 

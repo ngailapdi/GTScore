@@ -67,7 +67,37 @@ public class ContactFragment extends Fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                User friend = dataSnapshot.getValue(User.class);
+                final User friend = dataSnapshot.getValue(User.class);
+                database.child("Users/" + friend.getUid() + "/deviceToken/")
+                        .addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                                friend.setDeviceToken(dataSnapshot.getValue(String.class));
+                                database.child("Users/" + user.getUid() + "/friends/" + friend.getUid() + "/deviceToken/").setValue(friend.getDeviceToken());
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                System.out.println("----------token: " + friend.getDeviceToken());
+
 
                 // Notify the ArrayAdapter that there was a change
                 arrayAdapterName.add(friend);
@@ -142,7 +172,7 @@ public class ContactFragment extends Fragment {
 
                 });
                 convertView.setTag(viewHolder);
-                viewHolder.button.setText("Invited");
+//                viewHolder.button.setText("Invited");
             }
             main = (ViewHolder) convertView.getTag();
             main.txt.setText(getItem(position).getName());
