@@ -38,7 +38,7 @@ public class ContactFragment extends Fragment {
     private Button addUser;
 
     public void updateUI(String senderID, String receiverID) {
-        Intent createMessage = new Intent(getActivity(), CreateMessage.class);
+        Intent createMessage = new Intent(getActivity(), CreateMessageActivity.class);
         createMessage.putExtra("senderID", senderID);
         createMessage.putExtra("receiverID", receiverID);
         startActivityForResult(createMessage, 1);
@@ -67,36 +67,7 @@ public class ContactFragment extends Fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                final User friend = dataSnapshot.getValue(User.class);
-                database.child("Users/" + friend.getUid() + "/deviceToken/")
-                        .addChildEventListener(new ChildEventListener() {
-                            @Override
-                            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                                friend.setDeviceToken(dataSnapshot.getValue(String.class));
-                                database.child("Users/" + user.getUid() + "/friends/" + friend.getUid() + "/deviceToken/").setValue(friend.getDeviceToken());
-                            }
-
-                            @Override
-                            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                            }
-
-                            @Override
-                            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                            }
-
-                            @Override
-                            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                System.out.println("----------token: " + friend.getDeviceToken());
+                User friend = dataSnapshot.getValue(User.class);
 
 
                 // Notify the ArrayAdapter that there was a change

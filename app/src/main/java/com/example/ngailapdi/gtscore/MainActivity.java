@@ -18,14 +18,17 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             android.support.v4.app.Fragment selectedFrag = null;
             switch (item.getItemId()) {
-                case R.id.match:
-                    selectedFrag = new TournamentFragment();
+                case R.id.create_match:
+                    selectedFrag = new CreateMatchFragment();
                     break;
                 case R.id.contact:
                     selectedFrag = new ContactFragment();
                     break;
-                case R.id.game:
+                case R.id.history:
                     selectedFrag = new HistoryFragment();
+                    break;
+                case R.id.ongoing:
+                    selectedFrag = new CreateMatchFragment();
                     break;
 
             }
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navi_bottom);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,new TournamentFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,new CreateMatchFragment()).commit();
     }
 
 }

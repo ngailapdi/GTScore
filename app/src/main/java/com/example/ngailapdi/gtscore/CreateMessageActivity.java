@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CreateMessage extends AppCompatActivity {
+public class CreateMessageActivity extends AppCompatActivity {
         private EditText inputName;
         private EditText description;
         private Button save;

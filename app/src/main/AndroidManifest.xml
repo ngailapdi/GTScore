@@ -40,7 +40,7 @@
             android:label="@string/title_activity_profile"></activity>
         <activity android:name=".SignupActivity"
             android:label="@string/title_activity_signup"></activity>
-        <activity android:name=".CreateMessage"
+        <activity android:name=".CreateMessageActivity"
             android:label="@string/title_activity_create_message"></activity>
         <activity android:name=".GameActivity"
             android:label="@string/title_activity_game"></activity>
@@ -55,6 +55,8 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <activity android:name=".AddContactActivity"
+            android:label="@string/title_activity_match"></activity>
 
 
 

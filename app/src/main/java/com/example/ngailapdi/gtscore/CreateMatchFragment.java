@@ -26,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TournamentFragment extends Fragment {
+public class CreateMatchFragment extends Fragment {
     private DatabaseReference databaseUser;
     private FirebaseUser user;
     private EditText inputNameGame;
