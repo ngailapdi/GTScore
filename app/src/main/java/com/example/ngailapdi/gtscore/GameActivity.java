@@ -30,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
         final String gameName = intent.getStringExtra("gameName");
         final String gameID = intent.getStringExtra("gameID");
         final String gameDescription = intent.getStringExtra("gameDescription");
-        nameGame = (TextView) findViewById(R.id.nameGameText);
+        nameGame = (TextView) findViewById(R.id.message_title);
         nameGame.setText(gameName);
         matchList = new ArrayList<>();
         matchListName = new ArrayList<>();

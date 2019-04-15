@@ -18,8 +18,11 @@ import java.util.Map;
 
 
 public class CreateMessageActivity extends AppCompatActivity {
-        private EditText inputName;
-        private EditText description;
+        private EditText messageTitle;
+        private EditText message;
+        private EditText address;
+        private EditText date;
+        private EditText time;
         private Button save;
         private Button cancel;
 
@@ -32,9 +35,12 @@ public class CreateMessageActivity extends AppCompatActivity {
             Intent intent = getIntent();
             final String senderID = intent.getStringExtra("senderID");
             final String receiverID = intent.getStringExtra("receiverID");
-            setContentView(R.layout.activity_add_game);
-            inputName = (EditText) findViewById(R.id.nameGameText);
-            description = (EditText) findViewById(R.id.descriptionGameText);
+            setContentView(R.layout.activity_create_invite_message);
+            messageTitle = (EditText) findViewById(R.id.message_title);
+            message = (EditText) findViewById(R.id.message);
+            address = (EditText) findViewById(R.id.address);
+            date = (EditText) findViewById(R.id.date);
+            time = (EditText) findViewById(R.id.time);
             save = (Button) findViewById(R.id.saveButton);
             cancel = (Button) findViewById(R.id.cancelButton);
             database = FirebaseDatabase.getInstance().getReference();
@@ -45,7 +51,10 @@ public class CreateMessageActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     if (attemptSave()) {
                         sendInvitationToUser(senderID, receiverID,
-                                "From: " + senderID + " " + description.getText().toString(), inputName.getText().toString());
+                                "From: " + senderID + " " + message.getText().toString() + ". Date:  " + date.getText().toString()
+                                + ". Time: " + time.getText().toString() + ". Location: " + address.getText().toString(),
+                                messageTitle.getText().toString(), date.getText().toString(),
+                                time.getText().toString(), address.getText().toString());
 
                     }
                     updateUI(user);
@@ -64,13 +73,17 @@ public class CreateMessageActivity extends AppCompatActivity {
 
         }
 
-    public void sendInvitationToUser(String senderID, String uid, final String message, final String title) {
+    public void sendInvitationToUser(String senderID, String uid, final String message,
+                                     final String title, final String date, final String time, final String address) {
         DatabaseReference databaseInvitation = FirebaseDatabase.getInstance().getReference()
                 .child("Notifications/" + uid);
         Map<String, Object> invitation = new HashMap<>();
         invitation.put("message", message);
         invitation.put("title", title);
         invitation.put("sender", senderID);
+        invitation.put("date", date);
+        invitation.put("time", time);
+        invitation.put("address", address);
         databaseInvitation.push().setValue(invitation);
     }
 

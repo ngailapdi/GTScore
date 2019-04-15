@@ -26,9 +26,9 @@ public class AddGameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_game);
-        inputName = (EditText) findViewById(R.id.nameGameText);
-        description = (EditText) findViewById(R.id.descriptionGameText);
+        setContentView(R.layout.activity_create_invite_message);
+        inputName = (EditText) findViewById(R.id.message_title);
+        description = (EditText) findViewById(R.id.message);
         save = (Button) findViewById(R.id.saveButton);
         cancel = (Button) findViewById(R.id.cancelButton);
         database = FirebaseDatabase.getInstance().getReference();

@@ -1,10 +1,10 @@
 package com.example.ngailapdi.gtscore;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,14 +126,6 @@ public class AddContactActivity extends AppCompatActivity {
         userListView.setAdapter(userNameArrayAdapter);
     }
 
-    public void updateUI(String senderName, String senderID, String receiverID) {
-        Intent addContactMessageActivity = new Intent(this, AddContactMessageActivity.class);
-        addContactMessageActivity.putExtra("senderName", senderName);
-        addContactMessageActivity.putExtra("senderID", senderID);
-        addContactMessageActivity.putExtra("receiverID", receiverID);
-        startActivityForResult(addContactMessageActivity, 1);
-
-    }
 }
 
 class UserListAdapter extends ArrayAdapter<Map<String, String>> {
@@ -159,15 +151,26 @@ class UserListAdapter extends ArrayAdapter<Map<String, String>> {
             viewHolder.button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    addContactActivity.updateUI(
-                            FirebaseAuth.getInstance().getCurrentUser().getDisplayName(),
-                            FirebaseAuth.getInstance().getCurrentUser().getUid(), getItem(position).get("uid"));
+                    DatabaseReference databaseReferenceRequests = FirebaseDatabase.getInstance().getReference()
+                            .child("FriendRequests/" + getItem(position).get("uid"));
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    Map<String, Object> friendRequest = new HashMap<>();
+                    friendRequest.put("senderID", currentUser.getUid());
+                    friendRequest.put("senderName", currentUser.getDisplayName());
+                    friendRequest.put("email", currentUser.getEmail());
+                    friendRequest.put("status", "received");
+                    friendRequest.put("message", "You have a friend request from " + currentUser.getDisplayName() + ". Please log in to accept or decline");
+                    databaseReferenceRequests = databaseReferenceRequests.push();
+                    String key = databaseReferenceRequests.getKey();
+                    friendRequest.put("key", key);
+                    databaseReferenceRequests.setValue(friendRequest);
+                    Log.d("Notify", "Your friend request has been sent");
 
                 }
 
             });
             convertView.setTag(viewHolder);
-//                viewHolder.button.setText("Invited");
+//            viewHolder.button.setText("Pending");
         }
         main = (ViewHolder) convertView.getTag();
         main.txt.setText(getItem(position).get("name"));

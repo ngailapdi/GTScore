@@ -56,3 +56,51 @@ exports.sendNotification = functions.database.ref('/Notifications/{receiver_user
 		
 	});
 });
+
+
+exports.sendFriendRequest = functions.database.ref('/FriendRequests/{receiver_user_id}/{friendRequest_id}')
+.onWrite((data, context) =>
+{
+	const receiver_user_id = context.params.receiver_user_id;
+	const friendRequest_id = context.params.friendRequest_id;
+
+
+	console.log('We have a friend request to send to :' , receiver_user_id);
+
+
+	if (!data.after.val()) 
+	{
+		console.log('A notification has been deleted :' , friendRequest_id);
+		return null;
+	}
+
+	const DeviceToken = admin.database().ref(`/Users/${receiver_user_id}/deviceToken`).once('value');
+	const Message = admin.database().ref(`/FriendRequests/${receiver_user_id}/${friendRequest_id}/message`).once('value');
+
+	return DeviceToken.then(result => 
+	{
+		const token_id = result.val();
+        console.log('TokenID: ', token_id);
+    	Message.then(res => {
+    		const message = res.val().toString();
+    		const payload = 
+			{
+				notification:
+				{
+					title: "Friend Request",
+					body: message,
+					icon: "default"
+				}
+			
+			};
+			return admin.messaging().sendToDevice(token_id, payload)
+				.then(response => 
+					{
+						console.log('Sent friend request.');
+					});
+        })
+		
+
+		
+	});
+});

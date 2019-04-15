@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.ongoing:
                     selectedFrag = new CreateMatchFragment();
                     break;
+                case R.id.notification:
+                    selectedFrag = new NotificationFragment();
+                    break;
 
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,selectedFrag).commit();
