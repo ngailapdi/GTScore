@@ -143,15 +143,18 @@ public class CreateMatchFragment extends Fragment {
 
     }
     private void updateUI() {
-        Intent matchActivity = new Intent(getActivity(), MatchActivity.class);
-        matchActivity.putExtra("p1ID", match.getPlayer1ID());
-        matchActivity.putExtra("p2ID", match.getPlayer2ID());
-        matchActivity.putExtra("s1", match.getScore1());
-        matchActivity.putExtra("s2", match.getScore2());
-        matchActivity.putExtra("matchID", match.getMatchID());
-        matchActivity.putExtra("p1Name", match.getPlayer1Name());
-        matchActivity.putExtra("p2Name", match.getPlayer2Name());
-        startActivity(matchActivity);
+        Fragment selectedFrag = new OngoingMatchFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("Allow","yes");
+        bundle.putString("p1ID", match.getPlayer1ID());
+        bundle.putString("p2ID", match.getPlayer2ID());
+        bundle.putString("s1", match.getScore1().toString());
+        bundle.putString("s2", match.getScore2().toString());
+        bundle.putString("matchID", match.getMatchID());
+        bundle.putString("p1Name", match.getPlayer1Name());
+        bundle.putString("p2Name", match.getPlayer2Name());
+        selectedFrag.setArguments(bundle);
+        getFragmentManager().beginTransaction().replace(R.id.profile_frag,selectedFrag).commit();
 
     }
 }

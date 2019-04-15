@@ -97,12 +97,6 @@ public class HistoryFragment extends Fragment {
                 matchActivity.putExtra("p1Name", matchList.get(i).getPlayer1Name());
                 matchActivity.putExtra("p2Name", matchList.get(i).getPlayer2Name());
 
-
-
-
-
-
-
                 startActivity(matchActivity);
             }
         });

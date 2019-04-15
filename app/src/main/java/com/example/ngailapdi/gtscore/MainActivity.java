@@ -3,6 +3,7 @@ package com.example.ngailapdi.gtscore;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    private Fragment create = new CreateMatchFragment();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -26,9 +28,13 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.history:
                     selectedFrag = new HistoryFragment();
+
                     break;
                 case R.id.ongoing:
-                    selectedFrag = new CreateMatchFragment();
+                    selectedFrag = new OngoingMatchFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Allow","no");
+                    selectedFrag.setArguments(bundle);
                     break;
                 case R.id.notification:
                     selectedFrag = new NotificationFragment();
@@ -46,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navi_bottom);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,new CreateMatchFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,create).commit();
     }
 
 }

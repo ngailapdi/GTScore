@@ -77,6 +77,7 @@ public class NotificationFragment extends Fragment {
                             arrayAdapterName.add(mapAdapter);
 
                         }
+
                     }
 
                     @Override

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBack">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="443dp"
@@ -11,6 +12,7 @@
             android:id="@+id/message_title"
             android:layout_width="410dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
             android:hint="Title" />
     </android.support.design.widget.TextInputLayout>
 
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Date"
+        android:textColor="@color/colorPrimaryDark"
         android:inputType="date" />
 
     <EditText
@@ -28,6 +31,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Time"
+        android:textColor="@color/colorPrimaryDark"
         android:inputType="time" />
 
     <EditText
@@ -36,6 +40,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Address"
+        android:textColor="@color/colorPrimaryDark"
         android:inputType="textMultiLine" />
 
     <EditText
@@ -43,6 +48,7 @@
         android:layout_width="433dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:textColor="@color/colorPrimaryDark"
         android:hint="Your message"
         android:inputType="textMultiLine" />
 

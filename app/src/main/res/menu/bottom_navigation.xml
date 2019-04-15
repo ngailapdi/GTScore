@@ -6,7 +6,7 @@
     <item
         android:id="@+id/create_match"
         android:icon="@drawable/ic_sentiment_satisfied_black_24dp"
-        android:title="Create Match"/>
+        android:title="Match"/>
 
 
     <item
