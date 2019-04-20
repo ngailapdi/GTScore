@@ -40,7 +40,14 @@ public class NotificationService extends FirebaseMessagingService {
                 .setContentText(remoteMessage.getNotification().getBody()) //ditto
                 .setAutoCancel(true)  //dismisses the notification on click
                 .setSound(defaultSoundUri);
+        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+        bigTextStyle.setBigContentTitle(remoteMessage.getNotification().getTitle());
+        bigTextStyle.bigText(remoteMessage.getNotification().getBody());
+        notificationBuilder.setStyle(bigTextStyle);
         notificationManager.notify(notificationId /* ID of notification */, notificationBuilder.build());
+
+//                .setContentTitle(remoteMessage.getNotification().getTitle()) //the "title" value you sent in your notification
+//                .setContentText(remoteMessage.getNotification().getBody()) //ditto
 
     }
     /**

@@ -9,6 +9,7 @@ public class User {
     private String deviceToken;
     private List<User> friends;
     private List<Game> games;
+    private int num_wins;
 
     public User() {
 
@@ -21,6 +22,7 @@ public class User {
         this.uid = uid;
         this.friends = friends;
         this.games = games;
+        this.num_wins = 0;
     }
 
     public String getName() {

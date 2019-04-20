@@ -1,6 +1,5 @@
 package com.example.ngailapdi.gtscore;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -145,7 +144,7 @@ public class CreateMatchFragment extends Fragment {
     private void updateUI() {
         Fragment selectedFrag = new OngoingMatchFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("Allow","yes");
+        bundle.putString("matchID",match.getMatchID());
         bundle.putString("p1ID", match.getPlayer1ID());
         bundle.putString("p2ID", match.getPlayer2ID());
         bundle.putString("s1", match.getScore1().toString());

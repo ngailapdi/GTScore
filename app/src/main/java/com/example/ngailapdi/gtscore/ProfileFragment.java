@@ -36,7 +36,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        inflatedView = inflater.inflate(R.layout.fragment_profile,container,false);
+        inflatedView = inflater.inflate(R.layout.fragment_ongoing,container,false);
 //        user = FirebaseAuth.getInstance().getCurrentUser();
 //        userDisplayNameView = (TextView) inflatedView.findViewById(R.id.textView2);
 //        userDisplayNameView.setText(user.getDisplayName());

@@ -36,6 +36,7 @@ public class ContactFragment extends Fragment {
     private View displayView;
     private ArrayAdapter<User> arrayAdapterName;
     private Button addUser;
+    private Button viewLeaderBoard;
 
     public void updateUI(String senderID, String receiverID) {
         Intent createMessage = new Intent(getActivity(), CreateMessageActivity.class);
@@ -54,12 +55,20 @@ public class ContactFragment extends Fragment {
         database = FirebaseDatabase.getInstance().getReference();
         contactList = new ArrayList<User>();
         addUser = (Button) displayView.findViewById(R.id.add_contact_btn);
+        viewLeaderBoard = (Button) displayView.findViewById(R.id.leader_board);
         addUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("-----------------ADD USER");
                 Intent signUpIntent = new Intent(getActivity(), AddContactActivity.class);
                 startActivityForResult(signUpIntent, 1);
+            }
+        });
+        viewLeaderBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent leaderBoardIntent = new Intent(getActivity(), LeaderBoardActivity.class);
+                startActivityForResult(leaderBoardIntent, 1);
             }
         });
         database.child("Users/" + user.getUid() + "/friends")

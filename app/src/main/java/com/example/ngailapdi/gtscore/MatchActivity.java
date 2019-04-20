@@ -3,7 +3,6 @@ package com.example.ngailapdi.gtscore;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -89,42 +88,6 @@ public class MatchActivity extends AppCompatActivity {
 
             }
         });
-        addOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scorep1++;
-                score1.setText(scorep1 + "");
-            }
-        });
-        addTwo = (Button) findViewById(R.id.add2);
-        addTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scorep2++;
-                score2.setText(scorep2 + "");
-            }
-        });
-
-        minusOne = (Button) findViewById(R.id.minus1);
-        minusOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (scorep1 > 0) {
-                    scorep1 = scorep1 - 1;
-                    score1.setText(scorep1 + "");
-                }
-            }
-        });
-        minusTwo = (Button) findViewById(R.id.minus2);
-        minusTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(scorep2 > 0) {
-                    scorep2 = scorep2 - 1;
-                    score2.setText(scorep2 + "");
-                }
-            }
-        });
 
 
 
@@ -133,27 +96,6 @@ public class MatchActivity extends AppCompatActivity {
         player2.setText(player2Name);
 
 
-        saveScoreButton = (Button) findViewById(R.id.saveScore);
-        saveScoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatabaseReference databaseU11 = database.child("Users/" + p1ID + "/games/" + matchID + "/score1/");
-                DatabaseReference databaseU12 = database.child("Users/" + p1ID + "/games/" + matchID + "/score2/");
-                DatabaseReference databaseU21 = database.child("Users/" + p2ID + "/games/" + matchID + "/score1/");
-                DatabaseReference databaseU22 = database.child("Users/" + p2ID + "/games/" + matchID + "/score2/");
-                DatabaseReference databaseU13 = database.child("Users/" + p1ID + "/games/" + matchID + "/played/");
-                DatabaseReference databaseU23 = database.child("Users/" + p2ID + "/games/" + matchID + "/played/");
-
-                databaseU11.setValue(Integer.parseInt(score1.getText().toString()));
-                databaseU21.setValue(Integer.parseInt(score1.getText().toString()));
-                databaseU12.setValue(Integer.parseInt(score2.getText().toString()));
-                databaseU22.setValue(Integer.parseInt(score2.getText().toString()));
-                databaseU13.setValue(true);
-                databaseU23.setValue(true);
-
-
-            }
-        });
 
     }
 }
