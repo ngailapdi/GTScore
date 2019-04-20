@@ -136,7 +136,7 @@ class NotificationListAdapter extends ArrayAdapter<Map<String, String>>
         {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(layout,parent,false);
-            ViewHolder viewHolder = new ViewHolder();
+            final ViewHolder viewHolder = new ViewHolder();
             viewHolder.senderName = (TextView) convertView.findViewById(R.id.senderName);
             viewHolder.acceptBtn = (Button) convertView.findViewById(R.id.accept_btn);
             viewHolder.declineBtn = (Button) convertView.findViewById(R.id.decline_btn);
@@ -146,7 +146,7 @@ class NotificationListAdapter extends ArrayAdapter<Map<String, String>>
                 @Override
                 public void onClick(View view) {
 
-                    DatabaseReference friendRequests = FirebaseDatabase.getInstance().getReference().child("Users/" + currentUser.getUid() + "/" + getItem(position).get("key"));
+                    DatabaseReference friendRequests = FirebaseDatabase.getInstance().getReference().child("FriendRequests/" + currentUser.getUid() + "/" + getItem(position).get("key"));
                     Map<String, Object> updateMap = new HashMap<>();
                     updateMap.put("status", "accepted");
                     friendRequests.updateChildren(updateMap);
@@ -159,6 +159,18 @@ class NotificationListAdapter extends ArrayAdapter<Map<String, String>>
                     User thisFriend = new User(currentUser.getDisplayName(), currentUser.getEmail(), new ArrayList<User>(), new ArrayList<Game>());
                     thisFriend.setUid(currentUser.getUid());
                     friendReference.child(currentUser.getUid()).setValue(thisFriend);
+                    viewHolder.acceptBtn.setText("Added");
+
+                }
+            });
+            viewHolder.declineBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DatabaseReference friendRequests = FirebaseDatabase.getInstance().getReference().child("FriendRequests/" + currentUser.getUid() + "/" + getItem(position).get("key"));
+                    friendRequests.setValue(null);
+                    viewHolder.declineBtn.setText("Declined");
+
+
 
                 }
             });
