@@ -30,16 +30,16 @@ public class NotificationService extends FirebaseMessagingService {
         }
         int notificationId = new Random().nextInt(60000);
         System.out.println("---------notificationID: " + notificationId);
+        System.out.println("------remote message: " + remoteMessage);
+        System.out.println("--------remoteMessage: " + remoteMessage.getNotification().getTitle());
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, ADMIN_CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notifications_black_24dp)  //a resource for your custom small icon
-                .setContentTitle(remoteMessage.getData().get("from")) //the "title" value you sent in your notification
-                .setContentText(remoteMessage.getData().get("message")) //ditto
+                .setContentTitle(remoteMessage.getNotification().getTitle()) //the "title" value you sent in your notification
+                .setContentText(remoteMessage.getNotification().getBody()) //ditto
                 .setAutoCancel(true)  //dismisses the notification on click
                 .setSound(defaultSoundUri);
-
-
         notificationManager.notify(notificationId /* ID of notification */, notificationBuilder.build());
 
     }

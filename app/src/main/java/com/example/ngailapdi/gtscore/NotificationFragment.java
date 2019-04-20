@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -146,10 +147,12 @@ class NotificationListAdapter extends ArrayAdapter<Map<String, String>>
                 @Override
                 public void onClick(View view) {
 
-                    DatabaseReference friendRequests = FirebaseDatabase.getInstance().getReference().child("FriendRequests/" + currentUser.getUid() + "/" + getItem(position).get("key"));
+                    DatabaseReference friendRequests = FirebaseDatabase.getInstance().getReference().child("FriendRequests/" + currentUser.getUid() + "/" + getItem(position).get("friendRequestID"));
                     Map<String, Object> updateMap = new HashMap<>();
                     updateMap.put("status", "accepted");
+                    System.out.println("--------key:" + getItem(position).get("friendRequestID"));
                     friendRequests.updateChildren(updateMap);
+//                    friendRequests.removeValue();
                     DatabaseReference friendReference = FirebaseDatabase.getInstance().getReference().child("Users/" + currentUser.getUid() + "/friends");
                     User newFriend = new User(getItem(position).get("name"), getItem(position).get("email"), new ArrayList<User>(), new ArrayList<Game>());
                     newFriend.setUid(getItem(position).get("uid"));
@@ -159,16 +162,20 @@ class NotificationListAdapter extends ArrayAdapter<Map<String, String>>
                     User thisFriend = new User(currentUser.getDisplayName(), currentUser.getEmail(), new ArrayList<User>(), new ArrayList<Game>());
                     thisFriend.setUid(currentUser.getUid());
                     friendReference.child(currentUser.getUid()).setValue(thisFriend);
-                    viewHolder.acceptBtn.setText("Added");
+                    viewHolder.acceptBtn.setText("ADDED");
+                    Toast.makeText(getContext(),
+                            "User has been added to your friend list", Toast.LENGTH_LONG).show();
 
                 }
             });
             viewHolder.declineBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DatabaseReference friendRequests = FirebaseDatabase.getInstance().getReference().child("FriendRequests/" + currentUser.getUid() + "/" + getItem(position).get("key"));
+                    DatabaseReference friendRequests = FirebaseDatabase.getInstance().getReference().child("FriendRequests/" + currentUser.getUid() + "/" + getItem(position).get("friendRequestID"));
                     friendRequests.setValue(null);
-                    viewHolder.declineBtn.setText("Declined");
+                    viewHolder.declineBtn.setText("DECLINED");
+                    Toast.makeText(getContext(),
+                            "You have declined a friend request", Toast.LENGTH_LONG).show();
 
 
 
