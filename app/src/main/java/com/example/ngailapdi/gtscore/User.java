@@ -43,4 +43,5 @@ public class User {
     }
     public String getDeviceToken() {return this.deviceToken;}
     public void setDeviceToken(String deviceToken) {this.deviceToken = deviceToken;}
+    public void setNum_wins (int num_wins) {this.num_wins = num_wins;}
 }

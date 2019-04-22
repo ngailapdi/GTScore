@@ -88,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         });
 
                                                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                                                mainActivity.putExtra("itemID","false");
                                                 startActivity(mainActivity);
                                             } else {
                                                 // Sign-in fail

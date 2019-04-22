@@ -167,6 +167,7 @@ public class SignupActivity extends AppCompatActivity {
                         new ArrayList<User>(), new ArrayList<Game>());
                 newUser.setUid(user.getUid());
                 newUser.setDeviceToken(deviceToken);
+                newUser.setNum_wins(0);
                 databaseUser.setValue(newUser);
             }
         });

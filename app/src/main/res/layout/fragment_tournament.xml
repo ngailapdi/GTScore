@@ -10,17 +10,19 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="228dp"
-        android:layout_height="56dp"
+        android:layout_width="308dp"
+        android:layout_height="98dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="Create Match"
+        android:textAllCaps="true"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30dp"
+        android:textSize="35dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,20 +88,20 @@
 
     <Button
         android:id="@+id/create_match"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="92dp"
+        android:layout_height="79dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="208dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/ic_brightness_1_black_24dp"
         android:text="CREATE"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.729"
+        app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:layout_constraintVertical_bias="0.065" />
+        app:layout_constraintVertical_bias="0.022" />
 </android.support.constraint.ConstraintLayout>

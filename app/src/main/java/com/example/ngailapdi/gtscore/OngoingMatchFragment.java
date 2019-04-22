@@ -2,6 +2,7 @@ package com.example.ngailapdi.gtscore;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -60,8 +61,30 @@ public class OngoingMatchFragment extends Fragment {
                     GenericTypeIndicator<Map<String, Object>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Object>>() {};
                     final Map<String, Object> o = s.getValue(genericTypeIndicator);
                     System.out.println("-----o: " + o);
-                    if ((boolean)o.get("played") == false) {
-                        exist = true;
+                    if ((boolean)o.get("played") == true)
+                    {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(inflatedView.getContext());
+                        builder1.setMessage("You do not have any ongoing match!!!");
+                        builder1.setCancelable(true);
+
+                        builder1.setPositiveButton(
+                                "OKAY!",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                        Intent mainActivity = new Intent(inflatedView.getContext(), MainActivity.class);
+                                        mainActivity.putExtra("itemID","false");
+                                        startActivity(mainActivity);
+                                    }
+                                });
+
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+
+                    }
+
+                    else{
 
                         final String p1ID = (String) o.get("player1ID");
                         final String p2ID = (String) o.get("player2ID");
@@ -341,31 +364,9 @@ public class OngoingMatchFragment extends Fragment {
                             }
                         });
                     }
+
+
                 }
-//                if (!exist) {
-//                    AlertDialog.Builder builder1 = new AlertDialog.Builder(inflatedView.getContext());
-//                    builder1.setMessage("You don't have any ongoing match");
-//                    builder1.setCancelable(true);
-//
-//                    builder1.setPositiveButton(
-//                            "Yes",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    dialog.cancel();
-//                                }
-//                            });
-//
-//                    builder1.setNegativeButton(
-//                            "No",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//                                    dialog.cancel();
-//                                }
-//                            });
-//
-//                    AlertDialog alert11 = builder1.create();
-//                    alert11.show();
-//                }
 
             }
 

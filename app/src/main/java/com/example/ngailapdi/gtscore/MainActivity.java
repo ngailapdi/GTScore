@@ -1,5 +1,6 @@
 package com.example.ngailapdi.gtscore;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,6 +13,9 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
     private Fragment create = new CreateMatchFragment();
+
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -32,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.ongoing:
                     selectedFrag = new OngoingMatchFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Allow","no");
-                    selectedFrag.setArguments(bundle);
+
                     break;
                 case R.id.notification:
                     selectedFrag = new NotificationFragment();
@@ -52,7 +54,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navi_bottom);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,create).commit();
+        Intent intent = getIntent();
+        String thinga = intent.getStringExtra("itemID");
+        if (thinga.equals("true"))
+        {
+            navigation.setSelectedItemId(R.id.history);
+            getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag,new HistoryFragment()).commit();
+
+        }
+        else {
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.profile_frag, create).commit();
+        }
     }
 
 }

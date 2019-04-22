@@ -1,5 +1,6 @@
 package com.example.ngailapdi.gtscore;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -142,18 +143,27 @@ public class CreateMatchFragment extends Fragment {
 
     }
     private void updateUI() {
-        Fragment selectedFrag = new OngoingMatchFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("matchID",match.getMatchID());
-        bundle.putString("p1ID", match.getPlayer1ID());
-        bundle.putString("p2ID", match.getPlayer2ID());
-        bundle.putString("s1", match.getScore1().toString());
-        bundle.putString("s2", match.getScore2().toString());
-        bundle.putString("matchID", match.getMatchID());
-        bundle.putString("p1Name", match.getPlayer1Name());
-        bundle.putString("p2Name", match.getPlayer2Name());
-        selectedFrag.setArguments(bundle);
-        getFragmentManager().beginTransaction().replace(R.id.profile_frag,selectedFrag).commit();
+        Intent newintent = new Intent(getActivity(),MatchActivity.class);
+        newintent.putExtra("matchID",match.getMatchID());
+        newintent.putExtra("p1ID",match.getPlayer1ID());
+        newintent.putExtra("p2ID", match.getPlayer2ID());
+        newintent.putExtra("s1", match.getScore1().toString());
+        newintent.putExtra("s2", match.getScore2().toString());
+        newintent.putExtra("p1Name", match.getPlayer1Name());
+        newintent.putExtra("p2Name", match.getPlayer2Name());
+        startActivity(newintent);
+//        Fragment selectedFrag = new OngoingMatchFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putString("matchID",match.getMatchID());
+//        bundle.putString("matchID",match.getMatchID());
+//        bundle.putString("p2ID", match.getPlayer2ID());
+//        bundle.putString("s1", match.getScore1().toString());
+//        bundle.putString("s2", match.getScore2().toString());
+//        bundle.putString("matchID", match.getMatchID());
+//        bundle.putString("p1Name", match.getPlayer1Name());
+//        bundle.putString("p2Name", match.getPlayer2Name());
+//        selectedFrag.setArguments(bundle);
+//        getFragmentManager().beginTransaction().replace(R.id.profile_frag,selectedFrag).commit();
 
     }
 }
